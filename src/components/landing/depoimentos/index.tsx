@@ -1,7 +1,9 @@
+import Area from "../comum/Area";
+
 export default function Depoimentos () {
     return (
-        <div>
-            
-        </div>
+        <Area>
+                        
+        </Area>
     )
 }

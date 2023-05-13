@@ -1,7 +1,9 @@
+import Area from "../comum/Area";
+
 export default function Destaque() {
     return (
-        <div>
-            
-        </div>
+        <Area id="inicio">
+                        
+        </Area>
     )
 }

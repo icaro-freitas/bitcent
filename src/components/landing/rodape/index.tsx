@@ -1,7 +1,10 @@
+import Area from "../comum/Area";
+import Logo from "../comum/Logo";
+
 export default function Rodape() {
     return (
-        <div>
-            
-        </div>
+        <Area>
+                        
+        </Area>
     )
 }
