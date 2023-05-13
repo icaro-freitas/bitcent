@@ -7,7 +7,7 @@ import Vantagens from "./vantagens";
 
 export default function Landing(){
     return (
-        <Pagina>
+        <Pagina externa>
             <Cabecalho/>
             <Destaque/>
             <Vantagens/>
