@@ -1,7 +1,8 @@
-import Usuario from "@/logic/core/Usuario";
+import Id from "@/logic/core/comum/Id";
+import Usuario from "@/logic/core/usuario/Usuario";
 
 export default {
-    id: '1123123123',
+    id: Id.novo(),
     nome: 'João da Silva',
     email: 'jjjjoao@xmail.com',
     imagemUrl: null,
