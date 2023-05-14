@@ -1,8 +1,7 @@
 import { useState } from "react";
-import Transacao from "@/logic/core/financas/Transacao"
 
-export default function useFormulario(dadosIniciais: Transacao){
-    const [dados, setDados] = useState(dadosIniciais)
+export default function useFormulario<T = any>(dadosIniciais: T){
+    const [dados, setDados] = useState<T>(dadosIniciais)
 
     function alterarAtributo(atributo: string, fn?: Function) {
         return (valorOuEvento:any) => {

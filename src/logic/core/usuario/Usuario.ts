@@ -3,4 +3,6 @@ export default interface Usuario{
     nome: string,
     email: string,
     imagemUrl: string | null
+    cpf?: string
+    telefone?: string
 }
