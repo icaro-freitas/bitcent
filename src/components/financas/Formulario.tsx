@@ -4,7 +4,7 @@ import Dinheiro from "@/logic/utils/Dinheiro"
 import { Button, Group, Radio, TextInput } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 import { TipoTransacao } from '@/logic/core/financas/TipoTransacao'
-import { useState } from 'react'
+import useFormulario from '@/data/hooks/useFormulario'
 
 interface FormularioProps {
     transacao: Transacao
@@ -13,8 +13,8 @@ interface FormularioProps {
     cancelar?: () => void
 }
 
-export default function Formulario(props: FormularioProps) {
-    const [transacao, setTransacao] = useState(props.transacao)
+export default function Formulario(props: FormularioProps) {    
+    const {dados, alterarAtributo} = useFormulario(props.transacao)    
 
     return (
         <div className={`
@@ -25,20 +25,21 @@ export default function Formulario(props: FormularioProps) {
             <div className="flex flex-col gap-4 p-4 sm:p-7">
                 <TextInput
                     label='Descrição'
-                    value={transacao.descricao} 
-                    onChange={e => setTransacao({
-                        ...transacao,
-                        descricao : e.currentTarget.value})}/>
+                    value={dados.descricao} 
+                    onChange={alterarAtributo('descricao')}/>
                 <TextInput
                     label='Valor'
-                    value={Dinheiro.formatar(transacao.valor)} />
+                    value={Dinheiro.formatar(dados.valor)}
+                    onChange={alterarAtributo('valor',Dinheiro.desformatar)} />
                 <DatePickerInput
                     label='Data'
-                    value={transacao.data}
+                    value={dados.data}
                     locale="pt-BR"
-                    valueFormat="DD/MM/YYYY" />
+                    valueFormat="DD/MM/YYYY"
+                    onChange={alterarAtributo('data')} />
                 <Radio.Group
-                    value={transacao.tipo}
+                    value={dados.tipo}
+                    onChange={alterarAtributo('tipo')}
                 >
                     <Group>
                         <Radio value={TipoTransacao.RECEITA} label="Receita" />
@@ -48,17 +49,17 @@ export default function Formulario(props: FormularioProps) {
                 <div className="flex px-4 sm:px-7 py-4 gap-3 bg-zinc-800">
                     <Button
                         className="bg-green-500" color="green"
-                        onClick={() => props.salvar?.(transacao)}
+                        onClick={() => props.salvar?.(dados)}
                     >Salvar</Button>
                     <Button
                         className="bg-zinc-500" color="gray"
                         onClick={props.cancelar}
                     >Voltar</Button>
                     <div className="flex-1"></div>
-                    {transacao.id && (
+                    {dados.id && (
                         <Button
                             className="bg-red-500" color="red"
-                            onClick={() => props.excluir?.(transacao)}
+                            onClick={() => props.excluir?.(dados)}
                         >Excluir</Button>
                     )}
                 </div>
